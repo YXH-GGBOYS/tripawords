@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+pipeline/raw/
+pipeline/out/
+.wrangler/
+xcuserdata/
+DerivedData/
+FoldPilot.xcodeproj/

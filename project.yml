@@ -1,0 +1,58 @@
+name: FoldPilot
+options:
+  bundleIdPrefix: com.ggboys
+  deploymentTarget:
+    iOS: "27.0"
+  createIntermediateGroups: true
+packages:
+  FSRS:
+    url: https://github.com/open-spaced-repetition/swift-fsrs
+    # main as of 2026-05-25: the v5.0.0 tag keeps next()/init internal, main makes them public.
+    revision: 4fbaf20184d62f82a9f44f343337c61a2c5483e9
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  FoldPilot:
+    type: application
+    platform: iOS
+    sources:
+      - path: FoldPilot
+      # Built by pipeline/scripts (see CLAUDE.md); not in git.
+      - path: pipeline/out/foldpilot.sqlite
+        buildPhase: resources
+      - path: pipeline/raw/word-atlas-repo/public/atlas/thumb
+        type: folder
+        buildPhase: resources
+    dependencies:
+      - package: FSRS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.ggboys.foldpilot
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: 三脚猫背单词
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: YES
+        INFOPLIST_KEY_UIApplicationSupportsMultipleScenes: NO
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
+  FoldPilotTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [FoldPilotTests]
+    dependencies:
+      - target: FoldPilot
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+schemes:
+  FoldPilot:
+    build:
+      targets:
+        FoldPilot: all
+        FoldPilotTests: [test]
+    test:
+      targets: [FoldPilotTests]
