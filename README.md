@@ -4,7 +4,7 @@
 
 左半屏看书，右半屏查词。给 iPhone 折叠屏分屏阅读做的英语查词和背词 App：在书里拷贝一个词，右边马上出中文释义；顺手做成卡片，按记忆曲线每天复习。词典装在 App 里，不联网也能用。
 
-介绍页：<https://yxh-ggboys.github.io/tripawords/>
+介绍页：<https://tripawords.yinxinghan.com>
 
 <p align="center">
   <img src="docs/assets/sentence.jpg" width="240" alt="整句模式：难词标成橙色，点了 oath 后下面显示释义">
